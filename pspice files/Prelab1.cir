@@ -1,0 +1,37 @@
+*******************************************************************
+* Filename: Prelab1.cir
+* Author: Mitchell Larson <larsonma@msoe.edu>
+* Date: May 8, 2018
+* Provides:
+*	- Signal conditioning circiut that ranges a [0:400]mV signal to
+*	- a [0:4000]mV signal using an LM741 opamp.
+*******************************************************************
+
+*** Including the opamp library ***
+
+.lib "opamp.lib"
+
+*** Circuit Description ***
+*** Simulation technique: time domain at 1K [0:400]mV ***
+
+*** Power Supplies ***
+VCC+ 1 0 DC 5.0
+VCC- 2 0 DC -5.0
+
+*** Input voltage ***
+VS 5 0 SIN(200m, 200m, 1K)
+
+*** Resistors ***
+R1 3 0 2K
+R2 3 4 18K
+
+*** op-amp ***
+X1 5 3 1 2 4 LM741
+
+*** commands to spice ***
+*** simulate two periods ***
+
+.TRAN 0.0001 2m
+.PROBE
+
+.End
